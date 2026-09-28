@@ -1,0 +1,6 @@
+{
+  "name": "ATELIER VÈRSE — Modern Ready-to-Wear & Architectural Apparel",
+  "description": "Contemporary luxury clothing brand specializing in small-batch architectural tailoring, organic heavyweight knitwear, and selvedge essentials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
