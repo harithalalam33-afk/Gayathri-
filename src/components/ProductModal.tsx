@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, ShieldCheck, Ruler, Truck, RefreshCw, Check } from 'lucide-react';
+import { X, Heart, ShieldCheck, Ruler, Truck, RefreshCw, Check, MessageSquare } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
 export const ProductModal: React.FC = () => {
@@ -10,7 +10,8 @@ export const ProductModal: React.FC = () => {
     addToCart,
     toggleWishlist,
     isInWishlist,
-    setIsSizeGuideOpen
+    setIsSizeGuideOpen,
+    openChatWithPrompt
   } = useShop();
 
   const product = activeProductModal;
@@ -131,13 +132,22 @@ export const ProductModal: React.FC = () => {
               <div className="mb-6">
                 <div className="flex items-center justify-between text-xs mb-2">
                   <span className="font-medium text-stone-900 uppercase tracking-wider">Size:</span>
-                  <button
-                    onClick={() => setIsSizeGuideOpen(true)}
-                    className="text-stone-600 hover:text-stone-950 underline underline-offset-2 flex items-center gap-1"
-                  >
-                    <Ruler className="w-3 h-3" />
-                    <span>Size & Fit Guide</span>
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => openChatWithPrompt(`Could you tell me more about ${product.name} and provide tailoring/sizing guidance?`)}
+                      className="text-stone-600 hover:text-stone-950 underline underline-offset-2 flex items-center gap-1 text-[11px]"
+                    >
+                      <MessageSquare className="w-3 h-3 text-amber-700" />
+                      <span>Ask Stylist (n8n)</span>
+                    </button>
+                    <button
+                      onClick={() => setIsSizeGuideOpen(true)}
+                      className="text-stone-600 hover:text-stone-950 underline underline-offset-2 flex items-center gap-1 text-[11px]"
+                    >
+                      <Ruler className="w-3 h-3" />
+                      <span>Size & Fit Guide</span>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-5 gap-2">

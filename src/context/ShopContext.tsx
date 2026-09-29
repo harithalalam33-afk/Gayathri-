@@ -55,6 +55,11 @@ interface ShopContextType {
   applyPromoCode: (code: string) => { success: boolean; message: string };
   removePromoCode: () => void;
   discountAmount: number;
+  isChatOpen: boolean;
+  setIsChatOpen: (open: boolean) => void;
+  openChatWithPrompt: (prompt?: string) => void;
+  pendingChatPrompt: string | null;
+  setPendingChatPrompt: (prompt: string | null) => void;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -135,6 +140,15 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [currentOrder, setCurrentOrder] = useState<Order | null>(INITIAL_DEMO_ORDER);
   const [orderHistory, setOrderHistory] = useState<Order[]>([INITIAL_DEMO_ORDER]);
   const [appliedPromo, setAppliedPromo] = useState<{ code: string; discountPercent: number } | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [pendingChatPrompt, setPendingChatPrompt] = useState<string | null>(null);
+
+  const openChatWithPrompt = (prompt?: string) => {
+    if (prompt) {
+      setPendingChatPrompt(prompt);
+    }
+    setIsChatOpen(true);
+  };
 
   useEffect(() => {
     try {
@@ -288,7 +302,12 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         appliedPromo,
         applyPromoCode,
         removePromoCode,
-        discountAmount
+        discountAmount,
+        isChatOpen,
+        setIsChatOpen,
+        openChatWithPrompt,
+        pendingChatPrompt,
+        setPendingChatPrompt
       }}
     >
       {children}

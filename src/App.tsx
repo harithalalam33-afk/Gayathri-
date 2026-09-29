@@ -18,6 +18,7 @@ import { OrderTrackerModal } from './components/OrderTrackerModal';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { AtelierAppointmentModal } from './components/AtelierAppointmentModal';
 import { SearchModal } from './components/SearchModal';
+import { AtelierChatbot } from './components/AtelierChatbot';
 
 export default function App() {
   return (
@@ -52,6 +53,9 @@ export default function App() {
         <SizeGuideModal />
         <AtelierAppointmentModal />
         <SearchModal />
+
+        {/* Live n8n Atelier Concierge Chatbot */}
+        <AtelierChatbot />
       </div>
     </ShopProvider>
   );

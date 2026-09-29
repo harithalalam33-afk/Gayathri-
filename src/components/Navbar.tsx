@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X, PackageCheck } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, PackageCheck, MessageSquare } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
 export const Navbar: React.FC = () => {
@@ -9,7 +9,8 @@ export const Navbar: React.FC = () => {
     wishlist,
     setIsWishlistOpen,
     setIsSearchOpen,
-    setIsOrderTrackerOpen
+    setIsOrderTrackerOpen,
+    setIsChatOpen
   } = useShop();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -99,6 +100,16 @@ export const Navbar: React.FC = () => {
           </button>
 
           <button
+            onClick={() => setIsChatOpen(true)}
+            className="p-1 hover:text-stone-950 transition-colors text-xs flex items-center gap-1.5"
+            aria-label="Ask Atelier Concierge"
+            title="Open Atelier Concierge Chat"
+          >
+            <MessageSquare className="w-4 h-4 stroke-[1.75]" />
+            <span className="hidden lg:inline uppercase text-[11px] tracking-wider text-stone-500 font-medium">Concierge</span>
+          </button>
+
+          <button
             onClick={() => setIsWishlistOpen(true)}
             className="p-1 hover:text-stone-950 transition-colors relative"
             aria-label="Saved wishlist"
@@ -156,6 +167,16 @@ export const Navbar: React.FC = () => {
             className="block w-full text-left py-2 hover:text-stone-950"
           >
             Flagship Boutiques
+          </button>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setIsChatOpen(true);
+            }}
+            className="block w-full text-left py-2 text-stone-950 font-semibold flex items-center justify-between border-t border-stone-200 mt-2 pt-3"
+          >
+            <span>Live Atelier Concierge (n8n)</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           </button>
         </div>
       )}
